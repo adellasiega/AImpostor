@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760" role="img" aria-labelledby="title desc">
+  <title id="title">AImpostor LangGraph Flow</title>
+  <desc id="desc">LangGraph state machine for the command-line AImpostor game.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#243447"/>
+    </marker>
+    <style>
+      .bg { fill: #f6f8fb; }
+      .node { fill: #ffffff; stroke: #243447; stroke-width: 2; rx: 10; }
+      .startEnd { fill: #eaf4ff; stroke: #1d5f99; stroke-width: 2; rx: 24; }
+      .decision { fill: #fff8e5; stroke: #9a6500; stroke-width: 2; }
+      .text { font-family: Arial, sans-serif; font-size: 18px; fill: #1f2933; font-weight: 700; }
+      .small { font-family: Arial, sans-serif; font-size: 13px; fill: #465461; }
+      .edge { stroke: #243447; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .loop { stroke: #7c3aed; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .label { font-family: Arial, sans-serif; font-size: 14px; fill: #334155; font-weight: 700; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1280" height="760"/>
+  <text x="640" y="48" text-anchor="middle" class="text" style="font-size: 28px;">AImpostor LangGraph Flow</text>
+  <text x="640" y="74" text-anchor="middle" class="small">Compiled in Game.build_graph() with StateGraph(GameState)</text>
+
+  <rect class="startEnd" x="70" y="145" width="150" height="70"/>
+  <text class="text" x="145" y="187" text-anchor="middle">START</text>
+
+  <rect class="node" x="280" y="130" width="210" height="100"/>
+  <text class="text" x="385" y="166" text-anchor="middle">game_settings</text>
+  <text class="small" x="385" y="192" text-anchor="middle">Load config, collect CLI</text>
+  <text class="small" x="385" y="212" text-anchor="middle">Create players and roles</text>
+
+  <rect class="node" x="550" y="130" width="240" height="100"/>
+  <text class="text" x="670" y="166" text-anchor="middle">show_word_and_roles</text>
+  <text class="small" x="670" y="192" text-anchor="middle">Private human card reveal</text>
+  <text class="small" x="670" y="212" text-anchor="middle">Ready, reveal, hide</text>
+
+  <rect class="node" x="850" y="130" width="190" height="100"/>
+  <text class="text" x="945" y="166" text-anchor="middle">new_turn</text>
+  <text class="small" x="945" y="192" text-anchor="middle">Increment turn</text>
+  <text class="small" x="945" y="212" text-anchor="middle">Reset round state</text>
+
+  <rect class="node" x="850" y="300" width="190" height="100"/>
+  <text class="text" x="945" y="336" text-anchor="middle">chat</text>
+  <text class="small" x="945" y="362" text-anchor="middle">Optional public chat</text>
+  <text class="small" x="945" y="382" text-anchor="middle">Humans and LLMs may skip</text>
+
+  <rect class="node" x="550" y="300" width="240" height="100"/>
+  <text class="text" x="670" y="336" text-anchor="middle">say_word</text>
+  <text class="small" x="670" y="362" text-anchor="middle">One clue per active player</text>
+  <text class="small" x="670" y="382" text-anchor="middle">Reject repeated clues</text>
+
+  <rect class="node" x="280" y="300" width="210" height="100"/>
+  <text class="text" x="385" y="336" text-anchor="middle">voting</text>
+  <text class="small" x="385" y="362" text-anchor="middle">Collect votes</text>
+  <text class="small" x="385" y="382" text-anchor="middle">Eliminate top vote or tie</text>
+
+  <path class="decision" d="M145 525 L265 600 L145 675 L25 600 Z"/>
+  <text class="text" x="145" y="594" text-anchor="middle">win_check</text>
+  <text class="small" x="145" y="616" text-anchor="middle">Winner?</text>
+
+  <rect class="startEnd" x="430" y="565" width="170" height="70"/>
+  <text class="text" x="515" y="607" text-anchor="middle">end_game</text>
+
+  <rect class="startEnd" x="680" y="565" width="150" height="70"/>
+  <text class="text" x="755" y="607" text-anchor="middle">END</text>
+
+  <path class="edge" d="M220 180 L280 180"/>
+  <path class="edge" d="M490 180 L550 180"/>
+  <path class="edge" d="M790 180 L850 180"/>
+  <path class="edge" d="M945 230 L945 300"/>
+  <path class="edge" d="M850 350 L790 350"/>
+  <path class="edge" d="M550 350 L490 350"/>
+  <path class="edge" d="M280 350 H145 V525"/>
+  <path class="edge" d="M265 600 L430 600"/>
+  <path class="edge" d="M600 600 L680 600"/>
+  <path class="loop" d="M145 525 V455 H1110 V180 H1040"/>
+
+  <text class="label" x="154" y="443">after voting</text>
+  <text class="label" x="347.5" y="587" text-anchor="middle">game_over = true</text>
+  <text class="label" x="778" y="474">game_over = false</text>
+
+  <rect x="880" y="535" width="300" height="125" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+  <text class="label" x="1030" y="565" text-anchor="middle">GameState carries</text>
+  <text class="small" x="905" y="592">players, eliminated_players, turn</text>
+  <text class="small" x="905" y="612">civilian_word, impostor_word</text>
+  <text class="small" x="905" y="632">word_history, chat_history, used_words</text>
+  <text class="small" x="905" y="652">votes, last_eliminated, winner</text>
+</svg>

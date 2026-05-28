@@ -1,0 +1,50 @@
+{
+  "ollama": {
+    "model_name": "llama3.2:1b",
+    "think": false,
+    "options": {
+      "temperature": 0.7,
+      "repeat_penalty": 1.2
+    }
+  },
+  "random_seed": null,
+  "max_turns": 10,
+  "chat_enabled": true,
+  "chat_messages_per_player": 1,
+  "max_chat_chars": 240,
+  "clear_screen_between_reveals": true,
+  "chat_history_header": "==== CHAT HISTORY ====",
+  "word_history_header": "==== WORD HISTORY ====",
+  "chat_line_template": "\n[{player_id} {player_name}] {message}",
+  "word_line_template": "\nTurn clue - [{player_id} {player_name}] {word}",
+  "vote_line_template": "[{voter_id} {voter_name}] voted for [{target_id} {target_name}] {reason}",
+  "role_reveal_template": "\nPRIVATE CARD\nPlayer [{player_id}] {player_name}\nRole: {role}\nYour word: {word}\n",
+  "word_pairs": [
+    {
+      "civilian_word": "pizza",
+      "impostor_word": "focaccia"
+    },
+    {
+      "civilian_word": "ocean",
+      "impostor_word": "lake"
+    },
+    {
+      "civilian_word": "violin",
+      "impostor_word": "guitar"
+    },
+    {
+      "civilian_word": "coffee",
+      "impostor_word": "tea"
+    },
+    {
+      "civilian_word": "mountain",
+      "impostor_word": "hill"
+    }
+  ],
+  "system_prompt_rules": "You are playing AImpostor in a command-line game. Civilians share the same secret word. Impostors know they are impostors and receive a similar word. Players give one-word clues, may optionally chat publicly, then vote to eliminate a suspected impostor. You must act only as your assigned player. Do not reveal your private word directly. Avoid copying previous public messages or reusing the same sentence structure. Return only valid JSON matching the requested schema.",
+  "context_template": "IMPORTANT IDENTITY: you are exactly player {player_id} ({player_name}). You are not any other player. Your role is {role}. Your private word is {own_word}.\nTurn: {turn}\nActive players by stable id: {active_players}\nEliminated players: {eliminated_players}\nClue history, whose words cannot be repeated:\n{word_history}\n{chat_history}",
+  "send_message_prompt": "{context}\nOptional chat phase. Decide whether to send one short public message or skip. If you send a message, make it specific to the current histories and do not repeat previous sentences or generic accusations. Return JSON with action and message.",
+  "say_word_prompt": "{context}\nIt is your clue turn. Return one clue word related to your private word. It must not repeat any used clue and should be different from your earlier style. Return a JSON formatted as {{\"word\": \"_word_\"}}.",
+  "vote_prompt": "{context}\nVoting phase. Vote for one active player stable id other than yourself. Choose who is most likely to be an impostor and give a concise reason grounded in clues or chat. Return JSON with player_id and reason.",
+  "guess_word_prompt": "{context}\nYou were eliminated as an impostor. You have one final chance to win by guessing the civilians' secret word. Return JSON with field word."
+}
