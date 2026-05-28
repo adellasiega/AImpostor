@@ -8,9 +8,11 @@ from typing import Callable
 
 from agent import Agent
 from human import Human
-from ollama_manager import OllamaManager
-from utils.data_types import GameState
 from utils.player import Player
+from utils.data_types import GameState
+from ollama_manager import OllamaManager
+from langgraph.graph import END, START, StateGraph
+
 
 
 class Game:
@@ -25,7 +27,6 @@ class Game:
         self.rng = rng or random.Random()
 
     def build_graph(self):
-        from langgraph.graph import END, START, StateGraph
 
         graph = StateGraph(GameState)
         graph.add_node("game_settings", self.game_settings)
