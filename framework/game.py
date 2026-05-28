@@ -13,8 +13,6 @@ from utils.data_types import GameState
 from ollama_manager import OllamaManager
 from langgraph.graph import END, START, StateGraph
 
-
-
 class Game:
     def __init__(
         self,
@@ -27,7 +25,6 @@ class Game:
         self.rng = rng or random.Random()
 
     def build_graph(self):
-
         graph = StateGraph(GameState)
         graph.add_node("game_settings", self.game_settings)
         graph.add_node("show_word_and_roles", self.show_word_and_roles)
