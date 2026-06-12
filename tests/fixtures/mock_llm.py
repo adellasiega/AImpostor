@@ -1,11 +1,17 @@
 """Mock LLM to test without calling the actual API"""
+
 from typing import Type
+
 from pydantic import BaseModel
-from framework.utils.llm_manager import LLMManager
+
 from framework.utils.data_types import (
-    WordOutputFormat, VoteOutputFormat,
-    ChatOutputFormat, GuessOutputFormat
+    ChatOutputFormat,
+    GuessOutputFormat,
+    VoteOutputFormat,
+    WordOutputFormat,
 )
+from framework.utils.llm_manager import LLMManager
+
 
 class MockLLMManager(LLMManager):
     """Mock LLM to return predefined responses"""

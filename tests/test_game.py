@@ -1,7 +1,7 @@
-import pytest
+from framework.agent import Agent
 from framework.game import Game
 from framework.human import Human
-from framework.agent import Agent
+
 
 class TestGameInit:
 
@@ -62,7 +62,7 @@ class TestRoleAssignment:
 
         game.assign_roles(players, n_impostors=1)
 
-        assert all(hasattr(p, 'is_impostor') for p in players)
+        assert all(hasattr(p, "is_impostor") for p in players)
 
 
 class TestWordPairing:

@@ -24,8 +24,7 @@ class Agent(Player):
 
     def _visible_context(self, game_state: GameState) -> str:
         active_players = [
-            {"id": player.id, "name": player.label}
-            for player in game_state["players"]
+            {"id": player.id, "name": player.label} for player in game_state["players"]
         ]
         eliminated = [
             {"id": player.id, "name": player.label, "role": player.role}

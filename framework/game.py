@@ -6,12 +6,14 @@ from collections import Counter
 from pathlib import Path
 from typing import Callable
 
+from langgraph.graph import END, START, StateGraph
+
 from .agent import Agent
 from .human import Human
-from .utils.player import Player
-from .utils.data_types import GameState
 from .ollama_manager import OllamaManager
-from langgraph.graph import END, START, StateGraph
+from .utils.data_types import GameState
+from .utils.player import Player
+
 
 class Game:
     def __init__(
@@ -157,12 +159,14 @@ class Game:
                     "Only this player should look. Press enter to reveal..."
                 )
                 self._clear_screen(config)
-                print(config["role_reveal_template"].format(
-                    player_id=player.id,
-                    player_name=player.label,
-                    role=player.role,
-                    word=player.word,
-                ))
+                print(
+                    config["role_reveal_template"].format(
+                        player_id=player.id,
+                        player_name=player.label,
+                        role=player.role,
+                        word=player.word,
+                    )
+                )
                 self.input_fn("Press enter to hide this card...")
                 self._clear_screen(config)
         return state
@@ -228,13 +232,15 @@ class Game:
             votes[player.id] = vote_id
             reasons[player.id] = reason
             target = self._player_by_id(state["players"], vote_id)
-            print(config["vote_line_template"].format(
-                voter_id=player.id,
-                voter_name=player.label,
-                target_id=vote_id,
-                target_name=target.label,
-                reason=reason,
-            ))
+            print(
+                config["vote_line_template"].format(
+                    voter_id=player.id,
+                    voter_name=player.label,
+                    target_id=vote_id,
+                    target_name=target.label,
+                    reason=reason,
+                )
+            )
 
         state["votes"] = votes
         state["vote_reasons"] = reasons
@@ -328,7 +334,7 @@ class Game:
         return message.strip()[: int(state["config"].get("max_chat_chars", 240))]
 
     def _read_valid_clue(self, player: Player, state: GameState) -> str:
-        for attempt in range(3):
+        for _attempt in range(3):
             word = self._normalize_clue(player.say_word(state))
             if word and word.lower() not in state["used_words"]:
                 return word

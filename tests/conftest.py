@@ -1,6 +1,8 @@
-import pytest
-import random
 import json
+import random
+
+import pytest
+
 
 @pytest.fixture
 def sample_config():
@@ -8,9 +10,7 @@ def sample_config():
         "ollama": {"model_name": "test-model", "think": False, "options": {}},
         "max_turns": 5,
         "chat_enabled": False,  # no chat for now
-        "word_pairs": [
-            {"civilian_word": "pizza", "impostor_word": "focaccia"}
-        ],
+        "word_pairs": [{"civilian_word": "pizza", "impostor_word": "focaccia"}],
         "system_prompt_rules": "Test",
         "context_template": "Player {player_id}",
         "say_word_prompt": "Say word",
@@ -26,11 +26,13 @@ def sample_config():
         "clear_screen_between_reveals": False,
     }
 
+
 @pytest.fixture
 def mock_rng():
     rng = random.Random()
     rng.seed(42)
     return rng
+
 
 @pytest.fixture
 def tmp_config_file(tmp_path, sample_config):

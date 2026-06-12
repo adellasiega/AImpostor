@@ -24,6 +24,14 @@ jobs:
         run: |
           pip install -e ".[dev]"
 
+      - name: Run Ruff linter
+        run: |
+          ruff check framework/ tests/
+
+      - name: Run Black formatter check
+        run: |
+          black --check framework/ tests/
+
       - name: Run tests
         run: |
           pytest -v
