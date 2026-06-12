@@ -4,7 +4,7 @@ from typing import Type
 from ollama import chat
 from pydantic import BaseModel
 
-from utils.llm_manager import LLMManager
+from .utils.llm_manager import LLMManager
 
 
 class OllamaManager(LLMManager):

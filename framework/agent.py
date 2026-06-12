@@ -1,14 +1,14 @@
 from typing import Any
 
-from utils.data_types import (
+from .utils.data_types import (
     ChatOutputFormat,
     GameState,
     GuessOutputFormat,
     VoteOutputFormat,
     WordOutputFormat,
 )
-from utils.llm_manager import LLMManager
-from utils.player import Player
+from .utils.llm_manager import LLMManager
+from .utils.player import Player
 
 
 class Agent(Player):

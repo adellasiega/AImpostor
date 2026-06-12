@@ -1,6 +1,6 @@
 import argparse
 
-from game import Game
+from .game import Game
 
 
 def main() -> None:

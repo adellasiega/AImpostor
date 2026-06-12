@@ -6,11 +6,11 @@ from collections import Counter
 from pathlib import Path
 from typing import Callable
 
-from agent import Agent
-from human import Human
-from utils.player import Player
-from utils.data_types import GameState
-from ollama_manager import OllamaManager
+from .agent import Agent
+from .human import Human
+from .utils.player import Player
+from .utils.data_types import GameState
+from .ollama_manager import OllamaManager
 from langgraph.graph import END, START, StateGraph
 
 class Game:

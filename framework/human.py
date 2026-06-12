@@ -1,6 +1,6 @@
 from typing import Any
 
-from utils.player import Player
+from .utils.player import Player
 
 
 class Human(Player):
