@@ -4,11 +4,10 @@ import json
 
 @pytest.fixture
 def sample_config():
-    """Config minimale per test"""
     return {
         "ollama": {"model_name": "test-model", "think": False, "options": {}},
         "max_turns": 5,
-        "chat_enabled": False,  # Semplifichiamo per ora
+        "chat_enabled": False,  # no chat for now
         "word_pairs": [
             {"civilian_word": "pizza", "impostor_word": "focaccia"}
         ],
@@ -29,14 +28,12 @@ def sample_config():
 
 @pytest.fixture
 def mock_rng():
-    """RNG con seed fisso"""
     rng = random.Random()
     rng.seed(42)
     return rng
 
 @pytest.fixture
 def tmp_config_file(tmp_path, sample_config):
-    """Crea file config temporaneo"""
     config_file = tmp_path / "test_config.json"
     config_file.write_text(json.dumps(sample_config))
     return str(config_file)

@@ -1,11 +1,9 @@
-"""Test base per logica di gioco"""
 import pytest
 from framework.game import Game
 from framework.human import Human
 from framework.agent import Agent
 
 class TestGameInit:
-    """Test inizializzazione Game"""
 
     def test_game_creates_with_defaults(self):
         game = Game()
@@ -17,7 +15,6 @@ class TestGameInit:
 
 
 class TestPlayerCreation:
-    """Test creazione giocatori"""
 
     def test_create_human_players(self, sample_config, tmp_config_file):
         game = Game(config_file=tmp_config_file)
@@ -46,7 +43,6 @@ class TestPlayerCreation:
 
 
 class TestRoleAssignment:
-    """Test assegnazione ruoli"""
 
     def test_assign_roles_correctly(self, sample_config, tmp_config_file, mock_rng):
         game = Game(config_file=tmp_config_file, rng=mock_rng)
@@ -70,19 +66,16 @@ class TestRoleAssignment:
 
 
 class TestWordPairing:
-    """Test selezione parole"""
 
     def test_choose_word_pair(self, sample_config, tmp_config_file):
         game = Game(config_file=tmp_config_file)
         civilian_word, impostor_word = game.choose_word_pair(sample_config)
 
-        # Dalla config abbiamo solo pizza/focaccia
         assert civilian_word == "pizza"
         assert impostor_word == "focaccia"
 
 
 class TestGameHelpers:
-    """Test metodi helper"""
 
     def test_normalize_clue_valid(self):
         game = Game()
@@ -106,7 +99,6 @@ class TestGameHelpers:
 
 
 class TestGameFlow:
-    """Test flusso di gioco"""
 
     def test_route_after_win_check_continue(self):
         game = Game()
