@@ -1,5 +1,3 @@
-"""Test OllamaManager with mocked ollama.chat"""
-
 from unittest.mock import MagicMock, patch
 
 from framework.ollama_manager import OllamaManager

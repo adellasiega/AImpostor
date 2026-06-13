@@ -1,5 +1,3 @@
-"""Mock LLM to test without calling the actual API"""
-
 from typing import Type
 
 from pydantic import BaseModel
