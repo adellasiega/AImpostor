@@ -7,7 +7,7 @@ class TestHumanInit:
         human = Human()
 
         assert human.is_impostor is False
-        assert human.id is None 
+        assert human.id is None
 
     def test_human_creates_as_impostor(self):
         human = Human(is_impostor=True)
